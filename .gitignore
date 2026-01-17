@@ -8,7 +8,26 @@ build/
 .nyc_output
 docs/
 
-# Claude Code workspace
+# Arquivos temporários e de backup
+*.tmp
+*.bak
+*~
+*.swp
+*.swo
+
+# Arquivos de relatório e análise (desenvolvimento)
+lighthouse-*.json
+before-after-comparison.html
+ANALISE-REFLEXIVA-*.md
+MICRO-INTERACOES-REPORT.md
+TIPOGRAPHY-REFINEMENTS.md
+
+# Arquivos de configuração de desenvolvimento
+tailwind.config.js
+package.json
+package-lock.json
+
+# Claude Code workspace (documentação interna)
 .claude/
 CLAUDE.md
 *.output
