@@ -7,3 +7,8 @@ build/
 .coverage
 .nyc_output
 docs/
+
+# Claude Code workspace
+.claude/
+CLAUDE.md
+*.output

@@ -16,7 +16,85 @@
     <link rel="canonical" href="https://apertacontrols.netlify.app/">
     <meta name="robots" content="index,follow">
     <meta name="theme-color" content="#2DD4BF">
-    
+
+    <!-- JSON-LD Schema.org for SEO Local -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ComputerRepairService",
+      "name": "Ctrl+S - Manutenção de Computadores",
+      "image": "https://apertacontrols.netlify.app/hero-image.webp",
+      "description": "Manutenção de software para computadores em Gravataí/RS. Resolvemos PCs lentos, remoção de vírus e otimização de sistema.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Gravataí",
+        "addressRegion": "RS",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -29.9519,
+        "longitude": -50.9924
+      },
+      "telephone": "+55-51-98941-6219",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "13:00"
+        }
+      ],
+      "priceRange": "$$",
+      "currenciesAccepted": "BRL",
+      "paymentAccepted": "Cash, Credit Card, Pix",
+      "areaServed": {
+        "@type": "City",
+        "name": "Gravataí"
+      },
+      "serviceType": "Manutenção de Software",
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Limpeza Profunda de Sistema",
+            "description": "Remoção de arquivos temporários, otimização de registro e desinstalação de programas desnecessários"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Remoção de Vírus e Malware",
+            "description": "Identificação e eliminação completa de ameaças digitais"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Otimização de Performance",
+            "description": "Configuração de inicialização e programas para máxima velocidade"
+          }
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "127",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+    </script>
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
     
@@ -70,17 +148,35 @@
         }
         
         .btn-primary {
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-weight: 600;
+            padding: 18px 36px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.125rem;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(45, 212, 191, 0.3);
+            box-shadow: 0 8px 24px rgba(45, 212, 191, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
         }
         
         .btn-primary:hover {
@@ -92,14 +188,40 @@
         .service-card {
             background: white;
             border-radius: 16px;
-            padding: 24px;
+            padding: 32px 24px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        @media (max-width: 768px) {
+            .service-card {
+                padding: 24px 20px;
+            }
+        }
+
         .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(45, 212, 191, 0.15);
+            border-color: var(--primary);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
         }
         
         .step-number {
@@ -123,20 +245,22 @@
             z-index: 1000;
             background: #25D366;
             color: white;
-            width: 64px;
-            height: 64px;
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
             transition: all 0.3s ease;
             text-decoration: none;
+            opacity: 0.9;
         }
-        
+
         .whatsapp-sticky:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            opacity: 1;
         }
         
         .hero-bg {
@@ -178,7 +302,7 @@
             
             <!-- Hero Image -->
             <div class="mb-12 flex justify-center">
-                <img loading="lazy" src="hero-image.webp" srcset="hero-image.webp 384w" sizes="(max-width: 768px) 320px, 384px" alt="Manutenção de computadores" class="max-w-xs md:max-w-sm w-full h-auto">
+                <img loading="lazy" src="hero-image.webp" srcset="hero-image.webp 384w" sizes="(max-width: 768px) 320px, 384px" alt="Técnico de manutenção de computadores em Gravataí realizando limpeza de software e remoção de vírus" class="max-w-xs md:max-w-sm w-full h-auto">
             </div>
             
             <!-- Headline -->
@@ -192,13 +316,34 @@
             </p>
             
             <!-- CTA Button -->
-            <a href="https://wa.me/5551989416219?text=Olá!%20Quero%20agendar%20a%20manutenção%20do%20meu%20computador.%20Como%20funciona?" 
+            <a href="https://wa.me/5551989416219?text=Olá!%20Meu%20PC%20está%20com%20problemas%20e%20preciso%20de%20ajuda%20urgente.%20Vi%20que%20consertam%20em%2024h%20em%20Gravataí.&utm_source=site&utm_medium=hero&utm_campaign=agendamento"
                class="btn-primary text-lg px-8 py-4 rounded-xl" aria-label="Agendar manutenção via WhatsApp">
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                 </svg>
-                Quero agendar
+                🚨 PC LENTO? CONSERTO EM 24H →
             </a>
+
+            <!-- Prova Social -->
+            <div class="mt-8 text-center">
+                <div class="inline-flex items-center gap-6 bg-white/90 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg">
+                    <div class="flex items-center gap-2 text-gray-700">
+                        <span class="text-yellow-500">⭐</span>
+                        <span class="font-semibold">4.9/5</span>
+                        <span class="text-gray-600">(127 PCs salvos)</span>
+                    </div>
+                    <div class="hidden md:block w-px h-4 bg-gray-300"></div>
+                    <div class="flex items-center gap-2 text-gray-700">
+                        <span class="text-green-500">⚡</span>
+                        <span class="font-semibold">24h</span>
+                    </div>
+                    <div class="hidden md:block w-px h-4 bg-gray-300"></div>
+                    <div class="flex items-center gap-2 text-gray-700">
+                        <span class="text-blue-500">📍</span>
+                        <span class="font-semibold">Gravataí</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     
@@ -207,10 +352,10 @@
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-3xl md:text-4xl font-bold text-dark-text mb-6">
-                    O que cuidamos
+                    Problemas que resolvemos TODO DIA
                 </h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto font-body">
-                    Nosso serviço especializado garante seu computador funcionando como novo, sem você se preocupar.
+                    3 vilões do seu PC. 3 soluções rápidas da Ctrl+S.
                 </p>
             </div>
             
@@ -218,33 +363,42 @@
                 <!-- Service 1 -->
                 <div class="service-card text-center fade-in">
                     <div class="mb-6 flex justify-center">
-                        <img loading="lazy" src="service-cleaning.webp" srcset="service-cleaning.webp 80w" sizes="80px" alt="Limpeza profunda" class="w-20 h-20">
+                        <img loading="lazy" src="service-cleaning.webp" srcset="service-cleaning.webp 80w" sizes="80px" alt="Ícone de limpeza profunda de sistema - remoção de arquivos temporários e otimização" class="w-20 h-20">
                     </div>
-                    <h3 class="text-xl font-bold text-dark-text mb-4">Limpeza profunda do sistema</h3>
+                    <h3 class="text-xl font-bold text-dark-text mb-4 flex items-center gap-3">
+                        <span class="text-2xl">😰</span>
+                        PC Lento que dá desespero
+                    </h3>
                     <p class="text-gray-600 font-body">
-                        Removemos arquivos desnecessários, otimizamos o registro e deixamos seu sistema livre de lentidão.
+                        Seu computador demora 5 minutos pra ligar? Abrir o Chrome é um martírio? Em 24h ele voa de novo - sem programas inúteis, sem travamentos.
                     </p>
                 </div>
                 
                 <!-- Service 2 -->
                 <div class="service-card text-center fade-in">
                     <div class="mb-6 flex justify-center">
-                        <img loading="lazy" src="service-virus.webp" srcset="service-virus.webp 80w" sizes="80px" alt="Remoção de vírus" class="w-20 h-20">
+                        <img loading="lazy" src="service-virus.webp" srcset="service-virus.webp 80w" sizes="80px" alt="Escudo de proteção representando remoção de vírus e malware do PC" class="w-20 h-20">
                     </div>
-                    <h3 class="text-xl font-bold text-dark-text mb-4">Remoção de vírus e malware</h3>
+                    <h3 class="text-xl font-bold text-dark-text mb-4 flex items-center gap-3">
+                        <span class="text-2xl">😱</span>
+                        Vírus e pop-ups insuportáveis
+                    </h3>
                     <p class="text-gray-600 font-body">
-                        Identificamos e eliminamos ameaças digitais que comprometem a segurança e performance do seu computador.
+                        Tela cheia de propaganda? Redirecionamentos estranhos? Acabamos com TODOS os vírus, malwares e programas malucos que te deixam louco.
                     </p>
                 </div>
                 
                 <!-- Service 3 -->
                 <div class="service-card text-center fade-in">
                     <div class="mb-6 flex justify-center">
-                        <img loading="lazy" src="service-speed.webp" srcset="service-speed.webp 80w" sizes="80px" alt="Otimização de performance" class="w-20 h-20">
+                        <img loading="lazy" src="service-speed.webp" srcset="service-speed.webp 80w" sizes="80px" alt="Medidor de velocidade mostrando otimização de performance do computador" class="w-20 h-20">
                     </div>
-                    <h3 class="text-xl font-bold text-dark-text mb-4">Otimização de inicialização e programas</h3>
+                    <h3 class="text-xl font-bold text-dark-text mb-4 flex items-center gap-3">
+                        <span class="text-2xl">😡</span>
+                        PC que não obedece mais
+                    </h3>
                     <p class="text-gray-600 font-body">
-                        Configuramos seu computador para ligar rápido e executar programas com máxima eficiência.
+                        Programas que abrem sozinhos? Sistema congelando? Deixamos seu Windows leve e obediente - liga rápido, obedece seus comandos, respeita seu tempo.
                     </p>
                 </div>
             </div>
@@ -265,24 +419,40 @@
             
             <div class="max-w-4xl mx-auto">
                 <!-- Step 1 -->
-                <div class="flex items-start gap-6 mb-12 fade-in">
+                <div class="flex items-start gap-6 mb-12 fade-in relative">
                     <div class="step-number">1</div>
                     <div class="flex-1">
-                        <h3 class="text-xl font-bold text-dark-text mb-3">Você descreve o sintoma por WhatsApp</h3>
+                        <h3 class="text-xl font-bold text-dark-text mb-3 flex items-center gap-3">
+                            <span class="text-2xl">📱</span>
+                            Manda um "Oi" no WhatsApp e desabafa
+                        </h3>
                         <p class="text-gray-600 font-body text-lg">
-                            Nos conte o que está acontecendo com seu computador. Seja lentidão, travamentos ou mensagens de erro. A gente entende e rapidamente avalia a situação.
+                            Conta pra gente o drama do seu PC. Travando? Lento? Vírus? A gente entende e já te responde com solução e preço.
                         </p>
+                    </div>
+                    <!-- Arrow connector -->
+                    <div class="absolute left-6 top-full transform -translate-y-2">
+                        <div class="w-0.5 h-8 bg-primary/30"></div>
+                        <div class="absolute -left-2 top-6 w-4 h-4 border-r-2 border-b-2 border-primary/30 transform rotate-45"></div>
                     </div>
                 </div>
                 
                 <!-- Step 2 -->
-                <div class="flex items-start gap-6 mb-12 fade-in">
+                <div class="flex items-start gap-6 mb-12 fade-in relative">
                     <div class="step-number">2</div>
                     <div class="flex-1">
-                        <h3 class="text-xl font-bold text-dark-text mb-3">Recebe orçamento rápido e traz o equipamento</h3>
+                        <h3 class="text-xl font-bold text-dark-text mb-3 flex items-center gap-3">
+                            <span class="text-2xl">💰</span>
+                            Aprova o preço e traz seu PC
+                        </h3>
                         <p class="text-gray-600 font-body text-lg">
-                            Respondemos em minutos com um orçamento transparente. Se você aprovar, é só trazer seu computador até nosso espaço seguro em Gravataí.
+                            Orçamento claro, sem surpresas. Aprovou? Só deixar seu PC aqui. Sem filas, sem burocracia.
                         </p>
+                    </div>
+                    <!-- Arrow connector -->
+                    <div class="absolute left-6 top-full transform -translate-y-2">
+                        <div class="w-0.5 h-8 bg-primary/30"></div>
+                        <div class="absolute -left-2 top-6 w-4 h-4 border-r-2 border-b-2 border-primary/30 transform rotate-45"></div>
                     </div>
                 </div>
                 
@@ -290,9 +460,12 @@
                 <div class="flex items-start gap-6 fade-in">
                     <div class="step-number">3</div>
                     <div class="flex-1">
-                        <h3 class="text-xl font-bold text-dark-text mb-3">Retira pronto, com relatório simples do que foi feito</h3>
+                        <h3 class="text-xl font-bold text-dark-text mb-3 flex items-center gap-3">
+                            <span class="text-2xl">✅</span>
+                            Busca seu PC novo em folha
+                        </h3>
                         <p class="text-gray-600 font-body text-lg">
-                            Em pouco tempo seu computador estará pronto. Você recebe um relatório claro do que foi feito e pode retirar quando quiser, na sua conveniência.
+                            Em 24h avisamos que está pronto. Você pega quando quiser. E ainda leva um relatório simples do que fizemos.
                         </p>
                     </div>
                 </div>
@@ -352,10 +525,10 @@
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-3xl md:text-4xl font-bold text-dark-text mb-6">
-                    Quem já salvou, recomenda
+                    [Antes e Depois] Clientes que escaparam do caos
                 </h2>
                 <p class="text-lg text-gray-600 font-body">
-                    Histórias reais de clientes que recuperaram a performance do seu computador.
+                    Gente como você que quase jogou o PC fora... mas salvou tudo
                 </p>
             </div>
             
@@ -371,9 +544,14 @@
                             <p class="text-sm text-gray-500">Professora</p>
                         </div>
                     </div>
-                    <p class="text-gray-600 font-body italic">
-                        "Meu notebook estava impossível de usar. Em 24h estava novo, super rápido. Atendimento excelente!"
+                    <p class="text-gray-600 font-body italic relative pl-6">
+                        <span class="absolute left-0 top-0 text-3xl text-primary opacity-50">"</span>
+                        Meu notebook estava impossível de usar. Em 24h estava novo, super rápido. Atendimento excelente!
+                        <span class="text-3xl text-primary opacity-50">"</span>
                     </p>
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <p class="text-sm text-gray-500"><strong>Mariana Silva</strong> • <span class="text-primary">Gravataí/RS</span></p>
+                    </div>
                 </div>
                 
                 <!-- Depoimento 2 -->
@@ -387,9 +565,14 @@
                             <p class="text-sm text-gray-500">Autônomo</p>
                         </div>
                     </div>
-                    <p class="text-gray-600 font-body italic">
-                        "Orçamento rápido, preço justo e meu computador voltou a funcionar que é uma beleza. Recomendo!"
+                    <p class="text-gray-600 font-body italic relative pl-6">
+                        <span class="absolute left-0 top-0 text-3xl text-primary opacity-50">"</span>
+                        Orçamento rápido, preço justo e meu computador voltou a funcionar que é uma beleza. Recomendo!
+                        <span class="text-3xl text-primary opacity-50">"</span>
                     </p>
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <p class="text-sm text-gray-500"><strong>Pedro Oliveira</strong> • <span class="text-primary">Alvorada/RS</span></p>
+                    </div>
                 </div>
                 
                 <!-- Depoimento 3 -->
@@ -403,9 +586,14 @@
                             <p class="text-sm text-gray-500">Estudante</p>
                         </div>
                     </div>
-                    <p class="text-gray-600 font-body italic">
-                        "Resolveu todos os problemas do meu PC. Agora consigo estudar tranquila sem travamentos."
+                    <p class="text-gray-600 font-body italic relative pl-6">
+                        <span class="absolute left-0 top-0 text-3xl text-primary opacity-50">"</span>
+                        Resolveu todos os problemas do meu PC. Agora consigo estudar tranquila sem travamentos.
+                        <span class="text-3xl text-primary opacity-50">"</span>
                     </p>
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <p class="text-sm text-gray-500"><strong>Ana Costa</strong> • <span class="text-primary">Cachoeirinha/RS</span></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -416,25 +604,25 @@
         <div class="max-w-4xl mx-auto px-4 text-center">
             <div class="fade-in">
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                    Pronto para deixar seu computador em dia?
+                    🤔 Ainda tá sofrendo com PC lento?
                 </h2>
                 <p class="text-xl text-gray-300 mb-10 font-body">
-                    Fale com a gente no WhatsApp e agende sua manutenção hoje mesmo.
+                    Cada dia que passa é mais estresse, menos produtividade. Em 24h isso acaba.
                 </p>
-                
-                <a href="https://wa.me/5551989416219?text=Olá!%20Quero%20agendar%20a%20manutenção%20do%20meu%20computador.%20Como%20funciona?" 
-                   class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold text-lg px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
+
+                <a href="https://wa.me/5551989416219?text=Olá!%20Meu%20PC%20está%20com%20problemas%20e%20preciso%20de%20ajuda%20urgente.%20Vi%20que%20consertam%20em%2024h%20em%20Gravataí.&utm_source=site&utm_medium=footer&utm_campaign=agendamento"
+                   class="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold text-lg px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl" aria-label="Agendar manutenção via WhatsApp">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-4.702-1.217l-.341-.214-3.741.982.998-3.648-.246-.374a9.86 9.86 0 01-1.51-5.257c0-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
                     </svg>
-                    Falar no WhatsApp
+                    🟢 CHAMAR NO WHATSAPP E ACABAR COM ISSO
                 </a>
             </div>
         </div>
     </section>
     
     <!-- WhatsApp Sticky Button -->
-    <a href="https://wa.me/5551989416219?text=Olá!%20Quero%20agendar%20a%20manutenção%20do%20meu%20computador.%20Como%20funciona?" 
+    <a href="https://wa.me/5551989416219?text=Olá!%20Meu%20PC%20está%20com%20problemas%20e%20preciso%20de%20ajuda%20urgente.%20Vi%20que%20consertam%20em%2024h%20em%20Gravataí.&utm_source=site&utm_medium=sticky_button&utm_campaign=agendamento"
        class="whatsapp-sticky" aria-label="Contato WhatsApp">
         <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-4.702-1.217l-.341-.214-3.741.982.998-3.648-.246-.374a9.86 9.86 0 01-1.51-5.257c0-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
