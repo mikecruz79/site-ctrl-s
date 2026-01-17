@@ -99,8 +99,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
-    <link rel="stylesheet" href="assets/css/tailwind.min.css">
+    <link rel="stylesheet" href="assets/css/tailwind-optimized.css">
     
+    <!-- Typography Refinements -->
+    <link rel="stylesheet" href="assets/css/typography-refinements.css">
+
     <!-- Custom Styles -->
     <style>
         :root {
@@ -162,6 +165,16 @@
             box-shadow: 0 8px 24px rgba(45, 212, 191, 0.4);
             position: relative;
             overflow: hidden;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 8px 24px rgba(45, 212, 191, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 32px rgba(45, 212, 191, 0.6), 0 0 40px rgba(45, 212, 191, 0.3);
+            }
         }
 
         .btn-primary::before {
@@ -181,8 +194,9 @@
         
         .btn-primary:hover {
             background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(45, 212, 191, 0.4);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(45, 212, 191, 0.6), 0 0 48px rgba(45, 212, 191, 0.4);
+            animation: none;
         }
         
         .service-card {
@@ -194,6 +208,16 @@
             border: 2px solid transparent;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-card .service-icon {
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotate(5deg) scale(1.1);
         }
 
         @media (max-width: 768px) {
@@ -203,9 +227,28 @@
         }
 
         .service-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-8px) scale(1.02);
             box-shadow: 0 12px 40px rgba(45, 212, 191, 0.15);
             border-color: var(--primary);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fffe 100%);
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 18px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
         }
 
         .service-card::before {
@@ -236,7 +279,32 @@
             font-weight: 700;
             font-size: 20px;
             flex-shrink: 0;
+            animation: pulse-subtle 2s ease-in-out infinite;
         }
+
+        @keyframes pulse-subtle {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .step-item {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .step-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .step-item:nth-child(1) { transition-delay: 0.1s; }
+        .step-item:nth-child(2) { transition-delay: 0.2s; }
+        .step-item:nth-child(3) { transition-delay: 0.3s; }
         
         .whatsapp-sticky {
             position: fixed;
@@ -255,12 +323,61 @@
             transition: all 0.3s ease;
             text-decoration: none;
             opacity: 0.9;
+            animation: whatsapp-pulse 5s ease-in-out infinite;
+        }
+
+        @keyframes whatsapp-pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            5%, 15% {
+                transform: scale(1.1);
+            }
+            10% {
+                transform: scale(1);
+            }
         }
 
         .whatsapp-sticky:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
             opacity: 1;
+        }
+
+        /* Testimonial Cards */
+        .testimonial-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 60px;
+            color: var(--primary);
+            opacity: 0.1;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, #f9fafb 0%, #f0fdf4 100%);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-card .quote-mark {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card.visible .quote-mark {
+            opacity: 0.5;
+            transform: scale(1);
         }
         
         .hero-bg {
@@ -287,6 +404,17 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Custom Cursor - Leve e performático */
+        @media (hover: hover) and (pointer: fine) {
+            * {
+                cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%232DD4BF' d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E") 12 12, auto;
+            }
+
+            a, button, .btn-primary, .whatsapp-sticky, .service-card {
+                cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%232DD4BF' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E") 12 12, pointer;
+            }
+        }
     </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -307,7 +435,7 @@
             
             <!-- Headline -->
             <h2 class="text-3xl md:text-4xl font-bold text-dark-text mb-6 leading-tight">
-                Seu computador rápido e seguro enquanto você faz sua rotina.
+                <span id="typewriter-text">PC travando? Lento que dá raiva? Em 24h ele voa de novo</span><span class="cursor" aria-hidden="true">|</span>
             </h2>
             
             <!-- Sub-headline -->
@@ -366,7 +494,7 @@
                         <img loading="lazy" src="service-cleaning.webp" srcset="service-cleaning.webp 80w" sizes="80px" alt="Ícone de limpeza profunda de sistema - remoção de arquivos temporários e otimização" class="w-20 h-20">
                     </div>
                     <h3 class="text-xl font-bold text-dark-text mb-4 flex items-center gap-3">
-                        <span class="text-2xl">😰</span>
+                        <span class="text-2xl service-icon">😰</span>
                         PC Lento que dá desespero
                     </h3>
                     <p class="text-gray-600 font-body">
@@ -380,7 +508,7 @@
                         <img loading="lazy" src="service-virus.webp" srcset="service-virus.webp 80w" sizes="80px" alt="Escudo de proteção representando remoção de vírus e malware do PC" class="w-20 h-20">
                     </div>
                     <h3 class="text-xl font-bold text-dark-text mb-4 flex items-center gap-3">
-                        <span class="text-2xl">😱</span>
+                        <span class="text-2xl service-icon">😱</span>
                         Vírus e pop-ups insuportáveis
                     </h3>
                     <p class="text-gray-600 font-body">
@@ -394,7 +522,7 @@
                         <img loading="lazy" src="service-speed.webp" srcset="service-speed.webp 80w" sizes="80px" alt="Medidor de velocidade mostrando otimização de performance do computador" class="w-20 h-20">
                     </div>
                     <h3 class="text-xl font-bold text-dark-text mb-4 flex items-center gap-3">
-                        <span class="text-2xl">😡</span>
+                        <span class="text-2xl service-icon">😡</span>
                         PC que não obedece mais
                     </h3>
                     <p class="text-gray-600 font-body">
@@ -419,7 +547,7 @@
             
             <div class="max-w-4xl mx-auto">
                 <!-- Step 1 -->
-                <div class="flex items-start gap-6 mb-12 fade-in relative">
+                <div class="step-item flex items-start gap-6 mb-12 fade-in relative">
                     <div class="step-number">1</div>
                     <div class="flex-1">
                         <h3 class="text-xl font-bold text-dark-text mb-3 flex items-center gap-3">
@@ -438,7 +566,7 @@
                 </div>
                 
                 <!-- Step 2 -->
-                <div class="flex items-start gap-6 mb-12 fade-in relative">
+                <div class="step-item flex items-start gap-6 mb-12 fade-in relative">
                     <div class="step-number">2</div>
                     <div class="flex-1">
                         <h3 class="text-xl font-bold text-dark-text mb-3 flex items-center gap-3">
@@ -457,7 +585,7 @@
                 </div>
                 
                 <!-- Step 3 -->
-                <div class="flex items-start gap-6 fade-in">
+                <div class="step-item flex items-start gap-6 fade-in">
                     <div class="step-number">3</div>
                     <div class="flex-1">
                         <h3 class="text-xl font-bold text-dark-text mb-3 flex items-center gap-3">
@@ -534,7 +662,7 @@
             
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Depoimento 1 -->
-                <div class="bg-gray-50 rounded-2xl p-8 fade-in">
+                <div class="testimonial-card bg-gray-50 rounded-2xl p-8 fade-in">
                     <div class="flex items-center gap-4 mb-6">
                         <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
                             M
@@ -545,9 +673,9 @@
                         </div>
                     </div>
                     <p class="text-gray-600 font-body italic relative pl-6">
-                        <span class="absolute left-0 top-0 text-3xl text-primary opacity-50">"</span>
+                        <span class="quote-mark absolute left-0 top-0 text-3xl text-primary">"</span>
                         Meu notebook estava impossível de usar. Em 24h estava novo, super rápido. Atendimento excelente!
-                        <span class="text-3xl text-primary opacity-50">"</span>
+                        <span class="quote-mark text-3xl text-primary">"</span>
                     </p>
                     <div class="mt-4 pt-4 border-t border-gray-200">
                         <p class="text-sm text-gray-500"><strong>Mariana Silva</strong> • <span class="text-primary">Gravataí/RS</span></p>
@@ -555,7 +683,7 @@
                 </div>
                 
                 <!-- Depoimento 2 -->
-                <div class="bg-gray-50 rounded-2xl p-8 fade-in">
+                <div class="testimonial-card bg-gray-50 rounded-2xl p-8 fade-in">
                     <div class="flex items-center gap-4 mb-6">
                         <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
                             P
@@ -566,9 +694,9 @@
                         </div>
                     </div>
                     <p class="text-gray-600 font-body italic relative pl-6">
-                        <span class="absolute left-0 top-0 text-3xl text-primary opacity-50">"</span>
+                        <span class="quote-mark absolute left-0 top-0 text-3xl text-primary">"</span>
                         Orçamento rápido, preço justo e meu computador voltou a funcionar que é uma beleza. Recomendo!
-                        <span class="text-3xl text-primary opacity-50">"</span>
+                        <span class="quote-mark text-3xl text-primary">"</span>
                     </p>
                     <div class="mt-4 pt-4 border-t border-gray-200">
                         <p class="text-sm text-gray-500"><strong>Pedro Oliveira</strong> • <span class="text-primary">Alvorada/RS</span></p>
@@ -576,7 +704,7 @@
                 </div>
                 
                 <!-- Depoimento 3 -->
-                <div class="bg-gray-50 rounded-2xl p-8 fade-in">
+                <div class="testimonial-card bg-gray-50 rounded-2xl p-8 fade-in">
                     <div class="flex items-center gap-4 mb-6">
                         <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
                             A
@@ -587,9 +715,9 @@
                         </div>
                     </div>
                     <p class="text-gray-600 font-body italic relative pl-6">
-                        <span class="absolute left-0 top-0 text-3xl text-primary opacity-50">"</span>
+                        <span class="quote-mark absolute left-0 top-0 text-3xl text-primary">"</span>
                         Resolveu todos os problemas do meu PC. Agora consigo estudar tranquila sem travamentos.
-                        <span class="text-3xl text-primary opacity-50">"</span>
+                        <span class="quote-mark text-3xl text-primary">"</span>
                     </p>
                     <div class="mt-4 pt-4 border-t border-gray-200">
                         <p class="text-sm text-gray-500"><strong>Ana Costa</strong> • <span class="text-primary">Cachoeirinha/RS</span></p>
@@ -647,12 +775,46 @@
     
     <!-- JavaScript -->
     <script>
+        // Typewriter Effect - Implementação leve < 1KB
+        function typewriterEffect() {
+            const text = document.getElementById('typewriter-text');
+            const cursor = document.querySelector('.cursor');
+            const fullText = text.textContent;
+            let index = 0;
+
+            // Limpa o texto para começar o efeito
+            text.textContent = '';
+
+            function type() {
+                if (index < fullText.length) {
+                    text.textContent += fullText.charAt(index);
+                    index++;
+                    setTimeout(type, 50 + Math.random() * 50); // Velocidade variável para parecer natural
+                } else {
+                    // Piscar cursor após terminar
+                    setInterval(() => {
+                        cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+                    }, 500);
+                }
+            }
+
+            // Inicia após 500ms para garantir que a página carregou
+            setTimeout(type, 500);
+        }
+
+        // Inicia o typewriter quando DOM carregar
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', typewriterEffect);
+        } else {
+            typewriterEffect();
+        }
+
         // Fade in animation on scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -660,12 +822,25 @@
                 }
             });
         }, observerOptions);
-        
+
         // Observe all fade-in elements
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
-        
+
+        // Special observer for step items
+        const stepObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.step-item').forEach(el => {
+            stepObserver.observe(el);
+        });
+
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -679,7 +854,7 @@
                 }
             });
         });
-        
+
         // WhatsApp button interaction
         const whatsappBtn = document.querySelector('.whatsapp-sticky');
         whatsappBtn.addEventListener('click', function(e) {
@@ -688,6 +863,23 @@
             setTimeout(() => {
                 this.style.transform = 'scale(1.1)';
             }, 100);
+        });
+
+        // WhatsApp button scale on scroll
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Aumenta o botão quando usuário rola mais de 300px
+            if (scrollTop > 300) {
+                whatsappBtn.style.transform = 'scale(1.1)';
+                whatsappBtn.style.animation = 'none'; // Remove animação para não conflitar
+            } else {
+                whatsappBtn.style.transform = 'scale(1)';
+                whatsappBtn.style.animation = ''; // Restaura animação
+            }
+
+            lastScrollTop = scrollTop;
         });
     </script>
 </body>

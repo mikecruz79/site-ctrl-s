@@ -1,0 +1,314 @@
+/* ==========================================
+   TIPOGRAPHY REFINEMENTS - Ctrl+S Premium
+   Mobile-first typography with perfect hierarchy
+   ========================================== */
+
+/* ==========================================
+   1. HERO SECTION - Hierarquia Perfeita
+   ========================================== */
+
+/* Hero H1 - Logo Ctrl+S */
+.text-5xl.md\\:text-7xl.font-bold.text-primary-dark.mb-4 {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Hero Subtitle */
+.text-lg.md\\:text-xl.text-gray-600.font-body {
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+    padding: 5px 0;
+}
+
+/* Main Headline with Typewriter */
+.text-3xl.md\\:text-4xl.font-bold.text-dark-text.mb-6.leading-tight {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* Hero Description */
+.text-lg.md\\:text-xl.text-gray-600.mb-10.max-w-2xl.mx-auto.font-body {
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+    max-width: 600px;
+}
+
+/* CTA Button */
+.btn-primary.text-lg.px-8.py-4.rounded-xl {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    text-transform: none;
+}
+
+/* Social Proof Text */
+.text-gray-700 .font-semibold {
+    font-weight: 600;
+    letter-spacing: 0.005em;
+}
+
+/* ==========================================
+   2. SECTION HEADINGS - Peso e Espaçamento
+   ========================================== */
+
+/* Section Titles */
+.text-3xl.md\\:text-4xl.font-bold.text-dark-text.mb-6 {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    margin-bottom: 4px;
+}
+
+/* Section Subtitles */
+.text-lg.text-gray-600.max-w-2xl.mx-auto.font-body {
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==========================================
+   3. CARDS DE SERVIÇO - Tipografia Hierárquica
+   ========================================== */
+
+/* Card Titles */
+.text-xl.font-bold.text-dark-text.mb-4 {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    font-size: 1.25rem;
+}
+
+@media (min-width: 768px) {
+    .text-xl.font-bold.text-dark-text.mb-4 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Card Descriptions */
+.text-gray-600.font-body {
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    max-width: 100%;
+}
+
+/* ==========================================
+   4. DEPOIMENTOS - Citação
+   ========================================== */
+
+/* Testimonial Text */
+.testimonial-card .text-gray-600.font-body.italic {
+    font-style: italic;
+    letter-spacing: 0.02em;
+    line-height: 1.7;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+/* Person Name */
+.testimonial-card h4.font-bold.text-dark-text {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+}
+
+/* ==========================================
+   5. COMO FUNCIONA - Steps Numerados
+   ========================================== */
+
+/* Step Title */
+.step-item h3.text-xl.font-bold.text-dark-text.mb-3 {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    margin-bottom: 4px;
+}
+
+/* Step Description */
+.step-item .text-gray-600.font-body.text-lg {
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+}
+
+/* Step Number Circle */
+.step-number {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1;
+}
+
+/* ==========================================
+   6. WHATSAPP BUTTON - Legível em Tamanho Pequeno
+   ========================================== */
+
+/* Sticky Button */
+.whatsapp-sticky {
+    font-size: 0;
+}
+
+/* Final CTA Button */
+.bg-gradient-to-r.from-green-500.to-green-600 .font-bold.text-lg {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+/* ==========================================
+   7. ATENDIMENTO SECTION
+   ========================================== */
+
+/* Atendimento Title */
+.bg-primary h2.text-3xl.md\\:text-4xl.font-bold.mb-8.text-dark-text {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+}
+
+/* Atendimento Subtitle */
+.bg-primary .text-xl.mb-6.leading-relaxed.text-dark-text {
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+}
+
+/* Location and Time Titles */
+.bg-primary h3.font-bold.text-lg.mb-3.text-dark-text {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+}
+
+/* ==========================================
+   8. FOOTER
+   ========================================== */
+
+/* Footer Title */
+footer h3.text-2xl.font-bold.text-primary-dark.mb-2 {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+
+/* Footer Text */
+footer .text-gray-600.font-body {
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   9. GLOBAL IMPROVEMENTS
+   ========================================== */
+
+/* Improve body text rendering */
+body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Better font loading experience */
+.font-display {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+}
+
+.font-body {
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+}
+
+/* Improve readability for long text */
+p, .font-body {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Better spacing for mobile */
+@media (max-width: 768px) {
+    /* Reduce paragraph spacing on mobile */
+    p {
+        margin-bottom: 1rem;
+    }
+
+    /* Better line height for mobile reading */
+    .text-gray-600 {
+        line-height: 1.6;
+    }
+
+    /* Slightly smaller letter spacing on mobile */
+    .text-xl.font-bold.text-dark-text.mb-4 {
+        letter-spacing: -0.015em;
+    }
+}
+
+/* ==========================================
+   10. PRINT STYLES
+   ========================================== */
+
+@media print {
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+
+    h1, h2, h3 {
+        font-weight: 600;
+        letter-spacing: 0;
+    }
+
+    .btn-primary, .whatsapp-sticky {
+        display: none;
+    }
+}
+
+/* ==========================================
+   11. ACCESSIBILITY IMPROVEMENTS
+   ========================================== */
+
+/* Ensure proper contrast ratios are maintained */
+.text-gray-600 {
+    color: #4B5563;
+}
+
+.text-gray-500 {
+    color: #6B7280;
+}
+
+/* Focus styles for keyboard navigation */
+a:focus, button:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .text-gray-600 {
+        color: #000;
+    }
+
+    .bg-gray-50 {
+        background-color: #fff;
+        border: 1px solid #000;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
