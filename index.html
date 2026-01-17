@@ -291,6 +291,27 @@
             }
         }
 
+        /* Breathing animations - sutis e sofisticadas */
+        @keyframes breathe-gentle {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            }
+            50% {
+                transform: scale(1.01);
+                box-shadow: 0 6px 24px rgba(45, 212, 191, 0.1);
+            }
+        }
+
+        @keyframes breathe-icon {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
         .step-item {
             opacity: 0;
             transform: translateX(-30px);
@@ -381,7 +402,43 @@
         }
         
         .hero-bg {
-            background: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%);
+            background:
+                radial-gradient(circle at 20% 30%, rgba(45, 212, 191, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(15, 118, 110, 0.05) 0%, transparent 50%),
+                linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(45, 212, 191, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(15, 118, 110, 0.03) 0%, transparent 20%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-10px, -15px) scale(1.02); }
+            66% { transform: translate(10px, 10px) scale(0.98); }
+        }
+
+        .hero-image-container img {
+            filter: drop-shadow(0 15px 40px rgba(45, 212, 191, 0.15));
+            border-radius: 16px;
+            transition: all 0.4s ease;
+        }
+
+        .hero-image-container:hover img {
+            transform: scale(1.02);
+            filter: drop-shadow(0 20px 50px rgba(45, 212, 191, 0.25));
         }
         
         .section-padding {
@@ -403,6 +460,48 @@
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* WhatsApp Sticky Button - Harmonia no scroll */
+        .whatsapp-sticky {
+            position: fixed;
+            z-index: 1000;
+            background: #25D366;
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            opacity: 0;
+            pointer-events: none;
+            bottom: 24px;
+            right: 24px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            transform: scale(0.8);
+        }
+
+        .whatsapp-sticky.visible {
+            opacity: 0.9;
+            pointer-events: all;
+            transform: scale(1);
+        }
+
+        .whatsapp-sticky:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            opacity: 1;
+        }
+
+        .whatsapp-sticky.scrolled {
+            transform: scale(1.1);
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
         }
 
         /* Custom Cursor - Leve e performático */
@@ -488,44 +587,52 @@
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Service 1 -->
+                <!-- Service 1 - PC Lento -->
                 <div class="service-card text-center fade-in">
-                    <div class="mb-6 flex justify-center">
-                        <img loading="lazy" src="service-cleaning.webp" srcset="service-cleaning.webp 80w" sizes="80px" alt="Ícone de limpeza profunda de sistema - remoção de arquivos temporários e otimização" class="w-20 h-20">
+                    <div class="mb-6 flex justify-center items-center gap-3">
+                        <span class="text-5xl service-transition-icon transition-all duration-300" style="animation: breathe-icon 5s ease-in-out infinite;">🐌</span>
+                        <span class="text-3xl text-primary transition-all duration-300">→</span>
+                        <span class="text-5xl service-transition-icon transition-all duration-300" style="animation: breathe-icon 5s ease-in-out infinite 0.2s;">🚀</span>
                     </div>
-                    <h3 class="text-xl font-bold text-dark-text mb-4 flex items-center gap-3">
-                        <span class="text-2xl service-icon">😰</span>
+                    <h3 class="text-xl font-bold text-dark-text mb-4 flex items-center justify-center gap-2">
                         PC Lento que dá desespero
                     </h3>
-                    <p class="text-gray-600 font-body">
+                    <p class="text-gray-600 font-body italic">
+                        "De 5 minutos pra ligar para ligar em 30 segundos"
+                    </p>
+                    <p class="text-gray-600 font-body mt-3">
                         Seu computador demora 5 minutos pra ligar? Abrir o Chrome é um martírio? Em 24h ele voa de novo - sem programas inúteis, sem travamentos.
                     </p>
                 </div>
-                
-                <!-- Service 2 -->
-                <div class="service-card text-center fade-in">
+
+                <!-- Service 2 - Vírus -->
+                <div class="service-card text-center fade-in" style="animation: breathe-gentle 6s ease-in-out infinite; animation-delay: 0.5s;">
                     <div class="mb-6 flex justify-center">
-                        <img loading="lazy" src="service-virus.webp" srcset="service-virus.webp 80w" sizes="80px" alt="Escudo de proteção representando remoção de vírus e malware do PC" class="w-20 h-20">
+                        <span class="text-6xl service-shield-icon transition-all duration-300" style="animation: breathe-icon 6s ease-in-out infinite 0.5s;">🛡️</span>
                     </div>
-                    <h3 class="text-xl font-bold text-dark-text mb-4 flex items-center gap-3">
-                        <span class="text-2xl service-icon">😱</span>
+                    <h3 class="text-xl font-bold text-dark-text mb-4 flex items-center justify-center gap-2">
                         Vírus e pop-ups insuportáveis
                     </h3>
-                    <p class="text-gray-600 font-body">
+                    <p class="text-gray-600 font-body italic">
+                        "Tela cheia de spam para tela limpa em 24h"
+                    </p>
+                    <p class="text-gray-600 font-body mt-3">
                         Tela cheia de propaganda? Redirecionamentos estranhos? Acabamos com TODOS os vírus, malwares e programas malucos que te deixam louco.
                     </p>
                 </div>
-                
-                <!-- Service 3 -->
-                <div class="service-card text-center fade-in">
+
+                <!-- Service 3 - PC Desobediente -->
+                <div class="service-card text-center fade-in" style="animation: breathe-gentle 6s ease-in-out infinite; animation-delay: 1s;">
                     <div class="mb-6 flex justify-center">
-                        <img loading="lazy" src="service-speed.webp" srcset="service-speed.webp 80w" sizes="80px" alt="Medidor de velocidade mostrando otimização de performance do computador" class="w-20 h-20">
+                        <span class="text-6xl service-power-icon transition-all duration-300" style="animation: breathe-icon 5.5s ease-in-out infinite 1s;">⚡</span>
                     </div>
-                    <h3 class="text-xl font-bold text-dark-text mb-4 flex items-center gap-3">
-                        <span class="text-2xl service-icon">😡</span>
+                    <h3 class="text-xl font-bold text-dark-text mb-4 flex items-center justify-center gap-2">
                         PC que não obedece mais
                     </h3>
-                    <p class="text-gray-600 font-body">
+                    <p class="text-gray-600 font-body italic">
+                        "De travado e lento para power user"
+                    </p>
+                    <p class="text-gray-600 font-body mt-3">
                         Programas que abrem sozinhos? Sistema congelando? Deixamos seu Windows leve e obediente - liga rápido, obedece seus comandos, respeita seu tempo.
                     </p>
                 </div>
@@ -601,126 +708,94 @@
         </div>
     </section>
     
-    <!-- Atendimento Section -->
-    <section class="section-padding bg-primary" id="atendimento">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <div class="fade-in">
-                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-dark-text">
-                    Atendimento
-                </h2>
-                
-                <div class="bg-dark-text/10 backdrop-blur-sm rounded-2xl p-8 mb-8">
-                    <p class="text-xl mb-6 leading-relaxed text-dark-text">
-                        Estamos em <strong>Gravataí/RS</strong> e atendemos toda a região metropolitana.
-                    </p>
-                    
-                    <div class="grid md:grid-cols-2 gap-6 text-left max-w-2xl mx-auto">
-                        <div class="bg-dark-text/10 rounded-xl p-6">
-                            <h3 class="font-bold text-lg mb-3 flex items-center gap-2 text-dark-text">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                                </svg>
-                                Localização
-                            </h3>
-                            <p class="font-body">Gravataí, RS - Região Metropolitana</p>
-                        </div>
-                        
-                        <div class="bg-dark-text/10 rounded-xl p-6">
-                            <h3 class="font-bold text-lg mb-3 flex items-center gap-2 text-dark-text">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
-                                    <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
-                                </svg>
-                                Horário
-                            </h3>
-                            <div class="font-body">
-                                <p><strong>Seg–Sex:</strong> 9h–18h</p>
-                                <p><strong>Sábado:</strong> 9h–13h</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <p class="text-lg opacity-90 font-body text-dark-text">
-                    A gente entende que computador lento dá estresse. Por isso, cuidamos dele com carinho e devolvemos pronto para você voltar à sua rotina.
-                </p>
-            </div>
-        </div>
-    </section>
-    
     <!-- Depoimentos Section -->
     <section class="section-padding bg-white" id="depoimentos">
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-3xl md:text-4xl font-bold text-dark-text mb-6">
-                    [Antes e Depois] Clientes que escaparam do caos
+                    Clientes que escaparam do caos
                 </h2>
                 <p class="text-lg text-gray-600 font-body">
-                    Gente como você que quase jogou o PC fora... mas salvou tudo
+                    Transformação real, resultados em 24h
                 </p>
             </div>
-            
+
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Depoimento 1 -->
+                <!-- Depoimento 1 - Mariana -->
                 <div class="testimonial-card bg-gray-50 rounded-2xl p-8 fade-in">
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg transform transition-transform duration-300 hover:scale-110">
                             M
                         </div>
                         <div>
                             <h4 class="font-bold text-dark-text">Mariana Silva</h4>
-                            <p class="text-sm text-gray-500">Professora</p>
+                            <p class="text-sm text-gray-500">Professora • Gravataí/RS</p>
                         </div>
                     </div>
+                    <div class="mb-4 flex justify-center items-center gap-2 text-sm">
+                        <span class="bg-red-100 text-red-700 px-2 py-1 rounded-full">😰 Travando</span>
+                        <span class="text-primary">→</span>
+                        <span class="bg-green-100 text-green-700 px-2 py-1 rounded-full">✅ Voando</span>
+                    </div>
                     <p class="text-gray-600 font-body italic relative pl-6">
-                        <span class="quote-mark absolute left-0 top-0 text-3xl text-primary">"</span>
+                        <span class="quote-mark absolute left-0 top-0 text-3xl text-primary opacity-30">"</span>
                         Meu notebook estava impossível de usar. Em 24h estava novo, super rápido. Atendimento excelente!
-                        <span class="quote-mark text-3xl text-primary">"</span>
+                        <span class="quote-mark text-3xl text-primary opacity-30">"</span>
                     </p>
-                    <div class="mt-4 pt-4 border-t border-gray-200">
-                        <p class="text-sm text-gray-500"><strong>Mariana Silva</strong> • <span class="text-primary">Gravataí/RS</span></p>
+                    <div class="mt-4 pt-4 border-t border-gray-200 text-center">
+                        <span class="text-yellow-500">⭐⭐⭐⭐⭐</span>
                     </div>
                 </div>
-                
-                <!-- Depoimento 2 -->
+
+                <!-- Depoimento 2 - Pedro -->
                 <div class="testimonial-card bg-gray-50 rounded-2xl p-8 fade-in">
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg transform transition-transform duration-300 hover:scale-110">
                             P
                         </div>
                         <div>
                             <h4 class="font-bold text-dark-text">Pedro Oliveira</h4>
-                            <p class="text-sm text-gray-500">Autônomo</p>
+                            <p class="text-sm text-gray-500">Autônomo • Alvorada/RS</p>
                         </div>
                     </div>
+                    <div class="mb-4 flex justify-center items-center gap-2 text-sm">
+                        <span class="bg-red-100 text-red-700 px-2 py-1 rounded-full">🦠 Vírus</span>
+                        <span class="text-primary">→</span>
+                        <span class="bg-green-100 text-green-700 px-2 py-1 rounded-full">🛡️ Protegido</span>
+                    </div>
                     <p class="text-gray-600 font-body italic relative pl-6">
-                        <span class="quote-mark absolute left-0 top-0 text-3xl text-primary">"</span>
+                        <span class="quote-mark absolute left-0 top-0 text-3xl text-primary opacity-30">"</span>
                         Orçamento rápido, preço justo e meu computador voltou a funcionar que é uma beleza. Recomendo!
-                        <span class="quote-mark text-3xl text-primary">"</span>
+                        <span class="quote-mark text-3xl text-primary opacity-30">"</span>
                     </p>
-                    <div class="mt-4 pt-4 border-t border-gray-200">
-                        <p class="text-sm text-gray-500"><strong>Pedro Oliveira</strong> • <span class="text-primary">Alvorada/RS</span></p>
+                    <div class="mt-4 pt-4 border-t border-gray-200 text-center">
+                        <span class="text-yellow-500">⭐⭐⭐⭐⭐</span>
                     </div>
                 </div>
-                
-                <!-- Depoimento 3 -->
+
+                <!-- Depoimento 3 - Ana -->
                 <div class="testimonial-card bg-gray-50 rounded-2xl p-8 fade-in">
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg transform transition-transform duration-300 hover:scale-110">
                             A
                         </div>
                         <div>
                             <h4 class="font-bold text-dark-text">Ana Costa</h4>
-                            <p class="text-sm text-gray-500">Estudante</p>
+                            <p class="text-sm text-gray-500">Estudante • Cachoeirinha/RS</p>
                         </div>
                     </div>
+                    <div class="mb-4 flex justify-center items-center gap-2 text-sm">
+                        <span class="bg-red-100 text-red-700 px-2 py-1 rounded-full">❌ Lento</span>
+                        <span class="text-primary">→</span>
+                        <span class="bg-green-100 text-green-700 px-2 py-1 rounded-full">📚 Estudos</span>
+                    </div>
                     <p class="text-gray-600 font-body italic relative pl-6">
-                        <span class="quote-mark absolute left-0 top-0 text-3xl text-primary">"</span>
+                        <span class="quote-mark absolute left-0 top-0 text-3xl text-primary opacity-30">"</span>
                         Resolveu todos os problemas do meu PC. Agora consigo estudar tranquila sem travamentos.
-                        <span class="quote-mark text-3xl text-primary">"</span>
+                        <span class="quote-mark text-3xl text-primary opacity-30">"</span>
                     </p>
-                    <div class="mt-4 pt-4 border-t border-gray-200">
-                        <p class="text-sm text-gray-500"><strong>Ana Costa</strong> • <span class="text-primary">Cachoeirinha/RS</span></p>
+                    <div class="mt-4 pt-4 border-t border-gray-200 text-center">
+                        <span class="text-yellow-500">⭐⭐⭐⭐⭐</span>
                     </div>
                 </div>
             </div>
@@ -748,10 +823,10 @@
             </div>
         </div>
     </section>
-    
-    <!-- WhatsApp Sticky Button -->
+
+    <!-- WhatsApp Sticky Button - Aparece após scroll -->
     <a href="https://wa.me/5551989416219?text=Olá!%20Meu%20PC%20está%20com%20problemas%20e%20preciso%20de%20ajuda%20urgente.%20Vi%20que%20consertam%20em%2024h%20em%20Gravataí.&utm_source=site&utm_medium=sticky_button&utm_campaign=agendamento"
-       class="whatsapp-sticky" aria-label="Contato WhatsApp">
+       class="whatsapp-sticky" aria-label="Contato WhatsApp - Surge quando tu precisa">
         <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-4.702-1.217l-.341-.214-3.741.982.998-3.648-.246-.374a9.86 9.86 0 01-1.51-5.257c0-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
         </svg>
@@ -865,18 +940,23 @@
             }, 100);
         });
 
-        // WhatsApp button scale on scroll
+        // WhatsApp button show on scroll
         let lastScrollTop = 0;
+        let hasBeenVisible = false;
         window.addEventListener('scroll', () => {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-            // Aumenta o botão quando usuário rola mais de 300px
-            if (scrollTop > 300) {
-                whatsappBtn.style.transform = 'scale(1.1)';
-                whatsappBtn.style.animation = 'none'; // Remove animação para não conflitar
+            // Mostra botão após scroll de 500px (primeira interação do usuário)
+            if (scrollTop > 500 && !hasBeenVisible) {
+                whatsappBtn.classList.add('visible');
+                hasBeenVisible = true;
+            }
+
+            // Aumenta o botão quando usuário rola mais de 1000px
+            if (scrollTop > 1000) {
+                whatsappBtn.classList.add('scrolled');
             } else {
-                whatsappBtn.style.transform = 'scale(1)';
-                whatsappBtn.style.animation = ''; // Restaura animação
+                whatsappBtn.classList.remove('scrolled');
             }
 
             lastScrollTop = scrollTop;
