@@ -99,7 +99,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="preload" as="image" href="hero-image.webp" imagesrcset="hero-image.webp 384w" imagesizes="(max-width: 768px) 320px, 384px">
+    <link rel="preload" as="image" href="hero-image.webp" type="image/webp" fetchpriority="high" imagesrcset="hero-image.webp 384w" imagesizes="(max-width: 768px) 320px, 384px">
     
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="assets/css/tailwind-optimized.css">
@@ -533,7 +533,7 @@
             
             <!-- Hero Image -->
             <div class="mb-12 flex justify-center">
-                <img fetchpriority="high" src="hero-image.webp" srcset="hero-image.webp 384w" sizes="(max-width: 768px) 320px, 384px" width="1024" height="1024" alt="Técnico de manutenção de computadores em Gravataí realizando limpeza de software e remoção de vírus" class="max-w-xs md:max-w-sm w-full h-auto">
+                <img fetchpriority="high" importance="high" loading="eager" src="hero-image.webp" srcset="hero-image.webp 384w" sizes="(max-width: 768px) 320px, 384px" width="1024" height="1024" alt="Técnico de manutenção de computadores em Gravataí realizando limpeza de software e remoção de vírus" class="max-w-xs md:max-w-sm w-full h-auto">
             </div>
             
             <!-- Headline -->
