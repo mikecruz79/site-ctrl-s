@@ -4,10 +4,13 @@
   "description": "Site Ctrl+S – manutenção de computadores",
   "private": true,
   "scripts": {
-    "build:css": "tailwindcss -i assets/css/input.css -o assets/css/tailwind.css --minify"
+    "build:css": "tailwindcss -i assets/css/input.css -o assets/css/tailwind.css --minify",
+    "lint:html": "htmlhint index.html"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
     "autoprefixer": "^10.4.23",
+    "htmlhint": "^1.9.1",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.19"
   }

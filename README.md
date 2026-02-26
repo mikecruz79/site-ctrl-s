@@ -1,6 +1,7 @@
 # Ctrl+S - Manutenção de Computadores
 
 ![Deployed on Netlify](https://img.shields.io/badge/Deployed%20on-Netlify-00C7B7?logo=netlify&style=for-the-badge)
+![CI](https://github.com/mikecruz79/site-ctrl-s/actions/workflows/ci.yml/badge.svg)
 ![GitHub last commit](https://badgen.net/github/last-commit/mikecruz79/site-ctrl-s)
 ![GitHub repo size](https://img.shields.io/github/repo-size/mikecruz79/site-ctrl-s?t=1706390400)
 ![GitHub](https://badgen.net/github/license/mikecruz79/site-ctrl-s)
@@ -150,6 +151,55 @@ site-ctrl-s/
 | **Total Assets**         | ~110KB (sem imagens)     | ✅ Ultra-performático |
 
 **Nota:** CSS otimizado via PurgeCSS remove 99.7% das classes não utilizadas, mantendo apenas o essencial para produção.
+
+---
+
+## 🧱 Arquitetura e Deploy
+
+- **Pipeline**: design → Tailwind utility-first → build PurgeCSS → deploy contínuo Netlify.
+- **Entry point**: `index.html` consome os CSS otimizados em `assets/css/`.
+- **Hospedagem**: Netlify (build zero, apenas upload estático) com redirects e headers versionados.
+- **Observabilidade**: Netlify Analytics + monitoramento externo (UptimeRobot) para disponibilidade.
+- Documento detalhado: [`docs/architecture.md`](docs/architecture.md).
+
+---
+
+## 🤝 Governança & Colaboração
+
+- **Fluxo padrão**: Issue ➜ branch `tipo/descricao` ➜ Pull Request com checklist.
+- **Branch protection**: `master` aceita apenas merges via PR com CI verde e squash merge.
+- **Documentos chave**: [`CONTRIBUTING.md`](CONTRIBUTING.md) e [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
+- **Templates**: Issues e PRs automatizados em `.github/` (bug, feature e revisão).
+- **Release notes**: registradas no [`CHANGELOG.md`](CHANGELOG.md) com versionamento semântico.
+- **Política de segurança**: disponível em [`SECURITY.md`](SECURITY.md) com SLA e canais de contato.
+
+### Como contribuir rapidamente
+1. Abra uma Issue usando o template adequado (bug ou feature).
+2. Crie uma branch `tipo/descritivo-curto` a partir de `master`.
+3. Rode `npm ci && npm run lint:html && npm run build:css && npx lhci autorun`.
+4. Abra um PR preenchendo o checklist e anexando evidências.
+5. Aguarde aprovação (mesmo em projeto solo, mantemos PR para histórico).
+
+---
+
+## 🧭 Roadmap
+
+| Fase | Status | Descrição |
+| ---- | ------ | --------- |
+| **Wave 1.6** | 🔄 Em planejamento | Conteúdo multilíngue (pt/en) e CTA com analytics dedicados |
+| **Wave 1.7** | 🟢 Planejado | Integração com CRM + automação de leads |
+| **Wave 2.0** | 🟡 Backlog | Dashboard de métricas públicas e blog técnico |
+
+Sugestões adicionais são bem-vindas via Issues com o template "Feature request".
+
+---
+
+## 🔒 Segurança & Observabilidade
+
+- **Relatos**: use [`SECURITY.md`](SECURITY.md) ou envie e-mail para security@apertacontrols.netlify.app.
+- **Headers Netlify**: `_headers` adiciona HSTS, CSP, X-Content-Type-Options e Referrer-Policy.
+- **Monitoramento**: Netlify Analytics + UptimeRobot com alertas de disponibilidade.
+- **Dependências**: checadas via CI (`npm audit`) e atualizadas periodicamente.
 
 ---
 

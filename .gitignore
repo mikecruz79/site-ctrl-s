@@ -88,5 +88,5 @@ CLAUDE.md
 .trunk/
 
 # Arquivos de análise e performance
-docs/
 .coverage
+.lighthouseci/
