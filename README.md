@@ -1,9 +1,9 @@
 # Ctrl+S - Manutenção de Computadores
 
 ![Deployed on Netlify](https://img.shields.io/badge/Deployed%20on-Netlify-00C7B7?logo=netlify&style=for-the-badge)
-![GitHub last commit](https://img.shields.io/github/last-commit/mikecruz79/site-ctrl-s?logo=github&style=for-the-badge)
-![GitHub repo size](https://img.shields.io/github/repo-size/mikecruz79/site-ctrl-s?logo=github&style=for-the-badge)
-![GitHub](https://img.shields.io/github/license/mikecruz79/site-ctrl-s?style=for-the-badge)
+![GitHub last commit](https://badgen.net/github/last-commit/mikecruz79/site-ctrl-s)
+![GitHub repo size](https://img.shields.io/github/repo-size/mikecruz79/site-ctrl-s?t=1706390400)
+![GitHub](https://badgen.net/github/license/mikecruz79/site-ctrl-s)
 
 > **Wave 1.5 Ready** - Transformação visual completa com micro-interações CSS, refinamento tipográfico e scroll storytelling
 
