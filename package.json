@@ -4,8 +4,10 @@
   "description": "Site Ctrl+S – manutenção de computadores",
   "private": true,
   "scripts": {
+    "lint:html": "htmlhint index.html",
     "build:css": "tailwindcss -i assets/css/input.css -o assets/css/tailwind.css --minify",
-    "lint:html": "htmlhint index.html"
+    "validate": "npm run lint:html && npm run build:css && npx lhci autorun --config=./lighthouserc.json",
+    "deploy:netlify": "./scripts/deploy-netlify.sh"
   },
   "devDependencies": {
     "@lhci/cli": "^0.15.1",
