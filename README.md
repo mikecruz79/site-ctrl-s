@@ -11,7 +11,7 @@ Site institucional responsivo para o serviço **Ctrl+S**, uma empresa de manuten
 
 **🚀 Site ao vivo:** [https://apertacontrols.netlify.app/](https://apertacontrols.netlify.app/)
 
-> **Pipeline atual:** `npm run deploy:netlify` executa lint (`htmlhint`), build (`tailwindcss`), Lighthouse CI e dispara o build hook da Netlify. O workflow GitHub Actions (`.github/workflows/ci.yml`) continua versionado, porém está pausado enquanto o GitHub Actions da conta aguarda regularização de billing. O Dependabot segue ativo para alertar atualizações de npm e Actions.
+> **Pipeline atual:** `npm run deploy:netlify` executa lint (`htmlhint`), build (`tailwindcss`), Lighthouse CI e dispara o build hook da Netlify. O workflow GitHub Actions (`.github/workflows/ci.yml`) está ativo novamente, garantindo validações automáticas em cada PR. O Dependabot segue ativo para alertar atualizações de npm e Actions.
 
 ---
 
@@ -67,7 +67,7 @@ O site foi desenvolvido com foco em **experiência mobile-first**, design limpo 
 | --- | --- |
 | `npm run validate` | Executa lint HTML, build CSS e Lighthouse localmente (sem disparar deploy). |
 | `npm run deploy:netlify` | Encapsula `validate` e, após passar, chama o hook [`scripts/deploy-netlify.sh`](scripts/deploy-netlify.sh) → Netlify constrói e publica. |
-| GitHub Actions (ci.yml) | Workflow continua no repositório, mas os jobs não iniciam enquanto o GitHub mantiver a conta bloqueada por billing. Ao desbloquear, volta a rodar sem ajustes. |
+| GitHub Actions (ci.yml) | Workflow ativo executando lint, build e Lighthouse nos PRs; em caso de falhas bloqueia merge até correção. |
 | Dependabot | Mantém vigilância semanal sobre `npm` e `github-actions`, garantindo alertas mesmo durante o bloqueio do Actions. |
 
 > Enquanto o CI do GitHub estiver indisponível, todo deploy oficial passa pelo comando `npm run deploy:netlify`, que garante qualidade e publicação automática no Netlify.
@@ -173,7 +173,7 @@ site-ctrl-s/
 - **Pipeline**: design → Tailwind utility-first → build PurgeCSS → `npm run deploy:netlify` → Netlify hook.
 - **Entry point**: `index.html` consome os CSS otimizados em `assets/css/`.
 - **Automação**: script [`scripts/deploy-netlify.sh`](scripts/deploy-netlify.sh) executa lint/build/Lighthouse antes de disparar o hook.
-- **GitHub Actions**: workflow `ci.yml` permanece versionado para quando o billing for regularizado (hoje o job não inicia por bloqueio de conta).
+- **GitHub Actions**: workflow `ci.yml` roda em toda branch/PR, repetindo lint + Lighthouse para garantir consistência com o pipeline local.
 - **Hospedagem**: Netlify (build zero, apenas upload estático) com redirects e headers versionados.
 - **Observabilidade**: Netlify Analytics + monitoramento externo (UptimeRobot) para disponibilidade.
 - Documento detalhado: [`docs/architecture.md`](docs/architecture.md).
@@ -204,6 +204,8 @@ site-ctrl-s/
 | ---- | ------ | --------- |
 | **Wave 1.6** | 🔄 Em planejamento | Conteúdo multilíngue (pt/en) e CTA com analytics dedicados |
 | **Wave 1.7** | 🟢 Planejado | Integração com CRM + automação de leads |
+| **Wave 1.8** | 🟢 Planejado | Acessibilidade e SEO contínuos: testes automáticos (Pa11y/axe) + monitoramento de schema markup |
+| **Wave 1.9** | 🟢 Planejado | Observabilidade: web vitals em tempo real + alertas de regressão/anomalias |
 | **Wave 2.0** | 🟡 Backlog | Dashboard de métricas públicas e blog técnico |
 
 Sugestões adicionais são bem-vindas via Issues com o template "Feature request".
