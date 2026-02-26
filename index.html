@@ -98,14 +98,23 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap">
+    </noscript>
     <link rel="preload" as="image" href="hero-image.webp" type="image/webp" fetchpriority="high" imagesrcset="hero-image.webp 384w" imagesizes="(max-width: 768px) 320px, 384px">
     
     <!-- Tailwind CSS -->
-    <link rel="stylesheet" href="assets/css/tailwind-optimized.css">
+    <link rel="preload" as="style" href="assets/css/tailwind-optimized.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="assets/css/tailwind-optimized.css">
+    </noscript>
     
     <!-- Typography Refinements -->
-    <link rel="stylesheet" href="assets/css/typography-refinements.css">
+    <link rel="preload" as="style" href="assets/css/typography-refinements.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="assets/css/typography-refinements.css">
+    </noscript>
 
     <!-- Custom Styles -->
     <style>
