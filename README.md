@@ -1,7 +1,6 @@
 # Ctrl+S - Manutenção de Computadores
 
 ![Deployed on Netlify](https://img.shields.io/badge/Deployed%20on-Netlify-00C7B7?logo=netlify&style=for-the-badge)
-![CI](https://github.com/mikecruz79/site-ctrl-s/actions/workflows/ci.yml/badge.svg)
 ![GitHub last commit](https://badgen.net/github/last-commit/mikecruz79/site-ctrl-s)
 ![GitHub repo size](https://img.shields.io/github/repo-size/mikecruz79/site-ctrl-s?t=1706390400)
 ![GitHub](https://badgen.net/github/license/mikecruz79/site-ctrl-s)
@@ -11,6 +10,8 @@
 Site institucional responsivo para o serviço **Ctrl+S**, uma empresa de manutenção de computadores localizada em Gravataí/RS. O site apresenta os serviços oferecidos, processo de atendimento, depoimentos de clientes e call-to-action para contato via WhatsApp.
 
 **🚀 Site ao vivo:** [https://apertacontrols.netlify.app/](https://apertacontrols.netlify.app/)
+
+> **Pipeline atual:** `npm run deploy:netlify` executa lint (`htmlhint`), build (`tailwindcss`), Lighthouse CI e dispara o build hook da Netlify. O workflow GitHub Actions (`.github/workflows/ci.yml`) continua versionado, porém está pausado enquanto o GitHub Actions da conta aguarda regularização de billing. O Dependabot segue ativo para alertar atualizações de npm e Actions.
 
 ---
 
@@ -57,6 +58,19 @@ O site foi desenvolvido com foco em **experiência mobile-first**, design limpo 
 | **CTA Otimizados**           | 3 botões WhatsApp com UTMs para tracking, copy focado em dor do cliente    |
 | **Schema Markup**            | JSON-LD para SEO, ComputerRepairService com LocalBusiness                |
 | **Mobile-First**             | Responsivo, touch-friendly, 60fps animations                              |
+
+---
+
+## ✅ Automação & Deploy em 2026
+
+| Componente | Status & Observações |
+| --- | --- |
+| `npm run validate` | Executa lint HTML, build CSS e Lighthouse localmente (sem disparar deploy). |
+| `npm run deploy:netlify` | Encapsula `validate` e, após passar, chama o hook [`scripts/deploy-netlify.sh`](scripts/deploy-netlify.sh) → Netlify constrói e publica. |
+| GitHub Actions (ci.yml) | Workflow continua no repositório, mas os jobs não iniciam enquanto o GitHub mantiver a conta bloqueada por billing. Ao desbloquear, volta a rodar sem ajustes. |
+| Dependabot | Mantém vigilância semanal sobre `npm` e `github-actions`, garantindo alertas mesmo durante o bloqueio do Actions. |
+
+> Enquanto o CI do GitHub estiver indisponível, todo deploy oficial passa pelo comando `npm run deploy:netlify`, que garante qualidade e publicação automática no Netlify.
 
 ---
 
@@ -156,8 +170,10 @@ site-ctrl-s/
 
 ## 🧱 Arquitetura e Deploy
 
-- **Pipeline**: design → Tailwind utility-first → build PurgeCSS → deploy contínuo Netlify.
+- **Pipeline**: design → Tailwind utility-first → build PurgeCSS → `npm run deploy:netlify` → Netlify hook.
 - **Entry point**: `index.html` consome os CSS otimizados em `assets/css/`.
+- **Automação**: script [`scripts/deploy-netlify.sh`](scripts/deploy-netlify.sh) executa lint/build/Lighthouse antes de disparar o hook.
+- **GitHub Actions**: workflow `ci.yml` permanece versionado para quando o billing for regularizado (hoje o job não inicia por bloqueio de conta).
 - **Hospedagem**: Netlify (build zero, apenas upload estático) com redirects e headers versionados.
 - **Observabilidade**: Netlify Analytics + monitoramento externo (UptimeRobot) para disponibilidade.
 - Documento detalhado: [`docs/architecture.md`](docs/architecture.md).
@@ -176,7 +192,7 @@ site-ctrl-s/
 ### Como contribuir rapidamente
 1. Abra uma Issue usando o template adequado (bug ou feature).
 2. Crie uma branch `tipo/descritivo-curto` a partir de `master`.
-3. Rode `npm ci && npm run lint:html && npm run build:css && npx lhci autorun`.
+3. Rode `npm install` (ou `npm ci`) e execute `npm run validate` para garantir lint/build/Lighthouse locais. Para publicar, use `npm run deploy:netlify` (que roda todas as validações e dispara o hook configurado).
 4. Abra um PR preenchendo o checklist e anexando evidências.
 5. Aguarde aprovação (mesmo em projeto solo, mantemos PR para histórico).
 
@@ -199,7 +215,7 @@ Sugestões adicionais são bem-vindas via Issues com o template "Feature request
 - **Relatos**: use [`SECURITY.md`](SECURITY.md) ou envie e-mail para security@apertacontrols.netlify.app.
 - **Headers Netlify**: `_headers` adiciona HSTS, CSP, X-Content-Type-Options e Referrer-Policy.
 - **Monitoramento**: Netlify Analytics + UptimeRobot com alertas de disponibilidade.
-- **Dependências**: checadas via CI (`npm audit`) e atualizadas periodicamente.
+- **Dependências**: monitoradas pelo Dependabot e auditadas durante `npm run validate`.
 
 ---
 
