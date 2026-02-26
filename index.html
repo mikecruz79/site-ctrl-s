@@ -96,7 +96,10 @@
     </script>
 
     <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="hero-image.webp" imagesrcset="hero-image.webp 384w" imagesizes="(max-width: 768px) 320px, 384px">
     
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="assets/css/tailwind-optimized.css">
@@ -517,6 +520,7 @@
     </style>
 </head>
 <body class="bg-white text-gray-800">
+    <main id="conteudo-principal">
     
     <!-- Hero Section -->
     <section class="hero-bg min-h-screen flex items-center justify-center px-4 py-20">
@@ -529,7 +533,7 @@
             
             <!-- Hero Image -->
             <div class="mb-12 flex justify-center">
-                <img loading="lazy" src="hero-image.webp" srcset="hero-image.webp 384w" sizes="(max-width: 768px) 320px, 384px" alt="Técnico de manutenção de computadores em Gravataí realizando limpeza de software e remoção de vírus" class="max-w-xs md:max-w-sm w-full h-auto">
+                <img fetchpriority="high" src="hero-image.webp" srcset="hero-image.webp 384w" sizes="(max-width: 768px) 320px, 384px" width="1024" height="1024" alt="Técnico de manutenção de computadores em Gravataí realizando limpeza de software e remoção de vírus" class="max-w-xs md:max-w-sm w-full h-auto">
             </div>
             
             <!-- Headline -->
@@ -728,7 +732,7 @@
                             M
                         </div>
                         <div>
-                            <h4 class="font-bold text-dark-text">Mariana Silva</h4>
+                            <h3 class="font-bold text-dark-text">Mariana Silva</h3>
                             <p class="text-sm text-gray-500">Professora • Gravataí/RS</p>
                         </div>
                     </div>
@@ -754,7 +758,7 @@
                             P
                         </div>
                         <div>
-                            <h4 class="font-bold text-dark-text">Pedro Oliveira</h4>
+                            <h3 class="font-bold text-dark-text">Pedro Oliveira</h3>
                             <p class="text-sm text-gray-500">Autônomo • Alvorada/RS</p>
                         </div>
                     </div>
@@ -780,7 +784,7 @@
                             A
                         </div>
                         <div>
-                            <h4 class="font-bold text-dark-text">Ana Costa</h4>
+                            <h3 class="font-bold text-dark-text">Ana Costa</h3>
                             <p class="text-sm text-gray-500">Estudante • Cachoeirinha/RS</p>
                         </div>
                     </div>
@@ -823,6 +827,8 @@
             </div>
         </div>
     </section>
+
+    </main>
 
     <!-- WhatsApp Sticky Button - Aparece após scroll -->
     <a href="https://wa.me/5551989416219?text=Olá!%20Meu%20PC%20está%20com%20problemas%20e%20preciso%20de%20ajuda%20urgente.%20Vi%20que%20consertam%20em%2024h%20em%20Gravataí.&utm_source=site&utm_medium=sticky_button&utm_campaign=agendamento"
