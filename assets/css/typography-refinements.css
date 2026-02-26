@@ -8,7 +8,7 @@
    ========================================== */
 
 /* Hero H1 - Logo Ctrl+S */
-.text-5xl.md\\:text-7xl.font-bold.text-primary-dark.mb-4 {
+.text-5xl.font-bold.text-primary-dark.mb-4 {
     font-weight: 700;
     letter-spacing: -0.01em;
     line-height: 1.1;
@@ -16,7 +16,7 @@
 }
 
 /* Hero Subtitle */
-.text-lg.md\\:text-xl.text-gray-600.font-body {
+.text-lg.text-gray-600.font-body {
     font-weight: 500;
     line-height: 1.4;
     letter-spacing: 0.01em;
@@ -24,7 +24,7 @@
 }
 
 /* Main Headline with Typewriter */
-.text-3xl.md\\:text-4xl.font-bold.text-dark-text.mb-6.leading-tight {
+.text-3xl.font-bold.text-dark-text.mb-6.leading-tight {
     font-weight: 700;
     letter-spacing: -0.01em;
     line-height: 1.2;
@@ -32,7 +32,7 @@
 }
 
 /* Hero Description */
-.text-lg.md\\:text-xl.text-gray-600.mb-10.max-w-2xl.mx-auto.font-body {
+.text-lg.text-gray-600.mb-10.max-w-2xl.mx-auto.font-body {
     font-weight: 500;
     line-height: 1.4;
     letter-spacing: 0.01em;
@@ -58,7 +58,7 @@
    ========================================== */
 
 /* Section Titles */
-.text-3xl.md\\:text-4xl.font-bold.text-dark-text.mb-6 {
+.text-3xl.font-bold.text-dark-text.mb-6 {
     font-weight: 600;
     letter-spacing: 0.02em;
     line-height: 1.2;
@@ -168,7 +168,7 @@
    ========================================== */
 
 /* Atendimento Title */
-.bg-primary h2.text-3xl.md\\:text-4xl.font-bold.mb-8.text-dark-text {
+.bg-primary h2.text-3xl.font-bold.mb-8.text-dark-text {
     font-weight: 600;
     letter-spacing: 0.02em;
     line-height: 1.2;
